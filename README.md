@@ -1,2 +1,3 @@
-# commutation_service
-Commutation service for managing VLANs on Cisco/Microtic routers.
+# Commutation Service
+
+Managing VLANs on Cisco/Microtic routers.
