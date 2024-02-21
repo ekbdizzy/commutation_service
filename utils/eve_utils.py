@@ -1,10 +1,12 @@
 import logging
 from collections import defaultdict
 
+from pydantic_models import EveConfig
+
 logger = logging.getLogger(__name__)
 
 
-def parse_eve_config(eve_config: dict) -> defaultdict[str, dict]:
+def parse_eve_config(eve_config: EveConfig) -> defaultdict[str, dict]:
     """Parse config from eve schema and return source and destinations ports for creating VLAN.
     Node_name with switch must be ended with _Switch.
     Example: Cisco_3850_Switch."""
