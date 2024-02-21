@@ -1,11 +1,15 @@
 import logging
+
 from fastapi import FastAPI, status
+
+from pydantic_models import GetMaxVlanIdData
+from utils.ssh_utils import get_vlan_max_id
 
 
 logging.basicConfig(
     level=logging.DEBUG,
     filename="commutation.log",
-    filemode="w",
+    filemode="a",
     format="%(asctime)s %(name)s %(levelname)s:%(message)s",
 )
 
@@ -26,3 +30,9 @@ app = FastAPI()
 async def healthcheck():
     logger.info("Healthcheck")
     return {"status": "ok"}
+
+
+@app.post("/max_vlan_id", status_code=status.HTTP_200_OK)
+async def get_max_vlan_id(data: GetMaxVlanIdData):
+    max_vlan_id = get_vlan_max_id(data)
+    return {"max_vlan": max_vlan_id}
