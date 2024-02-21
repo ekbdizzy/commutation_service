@@ -1,13 +1,15 @@
 from pydantic import BaseModel
 
-
-class Switch(BaseModel):
-    ip: str
-    username: str
-    password: str
+from models.base_models import EveConfig, Switch
 
 
 class GetMaxVlanIdData(BaseModel):
+    """
+    :param data.switch: switch creds
+    :param data.command:
+    :param data.pattern: pattern to match VLAN id. Default for Cisco 3850.
+    """
+
     switch: Switch
     command: str = "show vlan"
     pattern: str = r"^\s*(\d{1,4})\s+"
@@ -15,13 +17,6 @@ class GetMaxVlanIdData(BaseModel):
 
 class GetMaxVlanIdDataOut(BaseModel):
     max_vlan_id: int
-
-
-class EveConfig(BaseModel):
-    url: str = ""
-    data: list[dict]
-    name: str = ""
-    topology_settings: list[dict] = []
 
 
 class CreateVlanIn(BaseModel):

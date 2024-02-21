@@ -1,7 +1,7 @@
 import logging
 from fastapi import APIRouter, status
 
-from pydantic_models import GetMaxVlanIdData, GetMaxVlanIdDataOut, CreateVlanIn
+from models.vlan_models import GetMaxVlanIdData, GetMaxVlanIdDataOut, CreateVlanIn
 from utils.ssh_utils import get_vlan_max_id
 
 logger = logging.getLogger(__name__)

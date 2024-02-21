@@ -7,7 +7,8 @@ import paramiko
 from paramiko.client import SSHClient
 
 from settings import Settings
-from pydantic_models import Switch, GetMaxVlanIdData
+from models.base_models import Switch
+from models.vlan_models import GetMaxVlanIdData
 
 settings = Settings()
 logger = logging.getLogger(__name__)
@@ -39,10 +40,7 @@ def ssh_connection(switch: Switch) -> Generator[SSHClient, None, None]:
 
 
 def get_vlan_max_id(data: GetMaxVlanIdData) -> int:
-    """Get maximum VLAN id from switch.
-    :param data.switch: switch creds
-    :param data.command: command to show VLANs. Default for Cisco 3850.
-    :param data.pattern: pattern to match VLAN id. Default for Cisco 3850."""
+    """Get maximum VLAN id from switch."""
 
     with ssh_connection(data.switch) as ssh_client:
 
