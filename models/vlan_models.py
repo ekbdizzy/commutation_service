@@ -5,9 +5,9 @@ from models.base_models import EveConfig, Switch
 
 class GetMaxVlanIdData(BaseModel):
     """
-    :param data.switch: switch creds
-    :param data.command:
-    :param data.pattern: pattern to match VLAN id. Default for Cisco 3850.
+    :param switch: switch creds
+    :param command: command to show VLANs. Default for Cisco.
+    :param pattern: pattern to match VLAN id. Default for Cisco.
     """
 
     switch: Switch
