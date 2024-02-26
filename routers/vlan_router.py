@@ -45,7 +45,7 @@ async def create_vlan(data: CreateDeleteVlanIn):
             {switch_logs}
             *** *** ***"""
         )
-    return CreateDeleteVlanIn(status="ok", log=switch_logs)
+    return CreateDeleteVlanOut(status="ok", log=switch_logs)
 
 
 @vlan_router.delete(
