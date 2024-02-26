@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from models.base_models import EveConfig, Switch
+from models.base_models import Switch
 
 
 class GetMaxVlanIdData(BaseModel):
@@ -16,14 +16,26 @@ class GetMaxVlanIdData(BaseModel):
 
 
 class GetMaxVlanIdDataOut(BaseModel):
+    """Response from getting max vlan id."""
+
     max_vlan_id: int
 
 
-class CreateVlanIn(BaseModel):
-    eve_config: EveConfig
+class CreateDeleteVlanIn(BaseModel):
+    """
+    Model for create/delete vlan.
+    :param switch: switch creds.
+    :param vlan_id: VLAN id.
+    :param commands: commands to run on the remote switch.
+    """
+
     switch: Switch
+    vlan_id: int
+    commands: list
 
 
-class CreateVlansOut(BaseModel):
-    vlan_ids: list[int]
-    status: str
+class CreateDeleteVlanOut(BaseModel):
+    """Response from create/delete vlan."""
+
+    status: str = "ok"
+    log: str = ""

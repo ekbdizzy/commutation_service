@@ -1,7 +1,7 @@
 import logging
 from collections import defaultdict
 
-from models.pydantic_models import EveConfig
+from models.base_models import EveConfig
 
 logger = logging.getLogger(__name__)
 
