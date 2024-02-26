@@ -44,16 +44,16 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
   "commands": [
     "enable",
     "conf t",
-    "vlan 2009",  // create VLAN
+    "vlan 2000",  // create VLAN with ID 2000
     
     "interface Te1/0/2", // add interface
     "switchport mode access",
-    "switchport access vlan 2009",
+    "switchport access vlan 2000",
     "exit",
     
     "interface Te1/0/4",
     "switchport mode access",
-    "switchport access vlan 2009",
+    "switchport access vlan 2000",
     "exit"
   ]
 }
@@ -72,7 +72,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
   "commands": [
     "enable",
     "conf t",
-    "no vlan 2000",  // delete vlan
+    "no vlan 2000",  // delete vlan with id 2000
     "end",
     "write memory"  // save settings
   ]
