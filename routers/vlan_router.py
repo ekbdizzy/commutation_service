@@ -36,7 +36,7 @@ async def get_max_vlan_id(data: GetMaxVlanIdData) -> GetMaxVlanIdDataOut:
 )
 async def create_vlan(data: CreateDeleteVlanIn):
     """Create vlan on switch."""
-    logger.info(f"Creating vlan {data.ip} {data.vlan_id}")
+    logger.info(f"Creating vlan {data.switch.ip} {data.vlan_id}")
 
     with ssh_connection(data.switch) as ssh_client:
         switch_logs = run_switch_commands(ssh_client, data.commands, sleep=2)
@@ -55,7 +55,7 @@ async def create_vlan(data: CreateDeleteVlanIn):
 )
 async def delete_vlan(data: CreateDeleteVlanIn):
     """Delete vlan from switch."""
-    logger.info(f"Delete VLAN {data.ip} {data.vlan_id}")
+    logger.info(f"Delete VLAN {data.switch.ip} {data.vlan_id}")
 
     with ssh_connection(data.switch) as ssh_client:
         switch_logs = run_switch_commands(ssh_client, data.commands, sleep=2)
@@ -64,4 +64,4 @@ async def delete_vlan(data: CreateDeleteVlanIn):
             {switch_logs}
             *** *** ***"""
         )
-    return CreateDeleteVlanIn(status="ok", log=switch_logs)
+    return CreateDeleteVlanOut(status="ok", log=switch_logs)

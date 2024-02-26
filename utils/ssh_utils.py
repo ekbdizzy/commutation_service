@@ -7,11 +7,9 @@ from typing import Generator
 import paramiko
 from paramiko.client import SSHClient
 
-from settings import Settings
 from models.base_models import Switch
 from models.vlan_models import GetMaxVlanIdData
 
-settings = Settings()
 logger = logging.getLogger(__name__)
 
 
@@ -66,6 +64,7 @@ def run_switch_commands(
     ssh_client: Generator[SSHClient, None, None], commands: list, sleep: int = 2
 ):
     shell = ssh_client.invoke_shell()
+
     for command in commands:
         shell.send(f"{command}\n")
         time.sleep(sleep)
