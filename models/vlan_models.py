@@ -39,3 +39,14 @@ class CreateDeleteVlanOut(BaseModel):
 
     status: str = "ok"
     log: str = ""
+
+
+class GnmiCreateDeleteVlanIn(BaseModel):
+    """
+    Model for create/delete vlan via gNMI.
+    :param switch: switch creds.
+    :param vlan_id: VLAN id.
+    """
+
+    switch: Switch
+    vlan_id: int
