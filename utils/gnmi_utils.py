@@ -21,11 +21,9 @@ def _gnmi_get_max_vlan_id(switch: Switch) -> int:
         for notification in result["notification"]:
             for vlan in notification["update"]:
                 val = vlan["val"]
-                key_id = None
                 for key in val.keys():
                     if "id" in key:
-                        key_id = key
-                keys.append(vlan["val"].get(key_id, 0))
+                        keys.append(vlan["val"].get(key, 0))
         return max(keys)
 
 
